@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hgt.VentanaController">
+    <children>
+        <Button fx:id="buttonCarpeta" layoutX="175.0" layoutY="334.0" onAction="#handleButtonCarpeta" text="Elegir carpeta" />
+      <TreeView fx:id="treeViewArchivos" layoutX="14.0" layoutY="34.0" prefHeight="290.0" prefWidth="250.0" />
+      <TextArea fx:id="textAreaCodigo" layoutX="274.0" layoutY="382.0" prefHeight="200.0" prefWidth="510.0" />
+      <Label layoutX="274.0" layoutY="359.0" prefHeight="17.0" prefWidth="120.0" text="Código">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.5333333333333333" endY="0.6952380952380952" startX="0.5333333333333333" startY="0.38095238095238093">
+               <stops>
+                  <Stop color="#0582ff" />
+                  <Stop color="#0037ad" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="120.0" text="Archivos">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.5333333333333333" endY="0.6952380952380952" startX="0.5333333333333333" startY="0.38095238095238093">
+               <stops>
+                  <Stop color="#0582ff" />
+                  <Stop color="#0037ad" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <TreeView fx:id="treeViewMetodos" layoutX="14.0" layoutY="382.0" prefHeight="200.0" prefWidth="250.0" />
+      <Label layoutX="14.0" layoutY="359.0" prefHeight="17.0" prefWidth="120.0" text="Métodos">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.5333333333333333" endY="0.6952380952380952" startX="0.5333333333333333" startY="0.38095238095238093">
+               <stops>
+                  <Stop color="#0582ff" />
+                  <Stop color="#0037ad" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Group fx:id="groupMetodo" layoutX="160.0" layoutY="33.0" opacity="1.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="292.0" layoutX="280.0" stroke="BLACK" strokeType="INSIDE" width="225.0" />
+            <AnchorPane layoutX="280.0" prefHeight="292.0" prefWidth="225.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="130.0" text="Líneas totales:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="130.0" text="Líneas comentadas:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="64.0" prefHeight="50.0" prefWidth="130.0" text="Porcentaje de líneas comentadas:" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="114.0" prefHeight="50.0" prefWidth="130.0" text="Complejidad ciclomática:" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="164.0" prefHeight="25.0" prefWidth="130.0" text="Fan in:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="189.0" prefHeight="25.0" prefWidth="130.0" text="Fan out:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="214.0" prefHeight="25.0" prefWidth="130.0" text="Halstead longitud:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="239.0" prefHeight="25.0" prefWidth="130.0" text="Halstead volumen:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelLineas" alignment="CENTER" layoutX="144.0" layoutY="14.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelLineasCom" alignment="CENTER" layoutX="144.0" layoutY="39.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelPorcentajeCom" alignment="CENTER" layoutX="144.0" layoutY="77.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelComplejidad" alignment="CENTER" layoutX="144.0" layoutY="127.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelFanIn" alignment="CENTER" layoutX="144.0" layoutY="164.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelFanOut" alignment="CENTER" layoutX="144.0" layoutY="189.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelHalsteadLong" alignment="CENTER" layoutX="144.0" layoutY="214.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelHalsteadVol" alignment="CENTER" layoutX="144.0" layoutY="239.0" prefHeight="25.0" prefWidth="70.0" text="-" textAlignment="CENTER" textFill="#0866c9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </Group>
+      <Group fx:id="groupGeneral" layoutX="274.0" layoutY="34.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e4" height="290.0" stroke="BLACK" strokeType="INSIDE" width="510.0" />
+            <PieChart fx:id="pieChart" prefHeight="290.0" prefWidth="250.0" />
+            <Label fx:id="caption">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="caption1" layoutX="275.0" layoutY="20.0" text="Total archivos java:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="caption12" layoutX="275.0" layoutY="90.0" text="Total métodos:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="caption11" layoutX="275.0" layoutY="160.0" text="Complejidad más alta:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="caption111" layoutX="275.0" layoutY="230.0" text="Fan out más alto:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTotalArchivos" layoutX="455.0" layoutY="20.0" text="-" textFill="#0866c9">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTotalMetodos" layoutX="455.0" layoutY="90.0" text="-" textFill="#0866c9">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelMaxCC" layoutX="455.0" layoutY="160.0" text="-" textFill="#0866c9">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelMaxFanOut" layoutX="455.0" layoutY="230.0" text="-" textFill="#0866c9">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+    </children>
+</AnchorPane>

@@ -1,0 +1,22 @@
+- Ingreso de datos -
+Datos de paciente:
+código
+nombre
+
+Situación de paciente:
+código paciente
+código médico
+diagnóstico
+
+
+Médico:
+código
+nombre
+especialización
+
+- Informes -
+Listado de pacientes por médico
+(requiere código de médico)
+
+Enfermedades que atiende cada médico
+(requiere código de médico)
