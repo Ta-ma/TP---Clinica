@@ -5,7 +5,6 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -103,12 +102,12 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXRadioButton layoutX="26.0" layoutY="130.0" stylesheets="@../css/radioButton.css" text="Encriptación de datos" textFill="#d1dde8">
+            <JFXRadioButton fx:id="fuRadio1" layoutX="26.0" layoutY="130.0" stylesheets="@../css/radioButton.css" text="Encriptación de datos" textFill="#d1dde8">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="26.0" layoutY="157.0" stylesheets="@../css/radioButton.css" text="Inicio de sesión de usuarios" textFill="#d1dde8">
+            <JFXRadioButton fx:id="fuRadio2" layoutX="26.0" layoutY="157.0" stylesheets="@../css/radioButton.css" text="Inicio de sesión de usuarios" textFill="#d1dde8">
                <font>
                   <Font size="18.0" />
                </font>
@@ -118,7 +117,7 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="26.0" layoutY="272.0" prefHeight="39.0" prefWidth="37.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="fuInputError" focusColor="#7898f8" layoutX="26.0" layoutY="272.0" prefHeight="39.0" prefWidth="37.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
@@ -147,12 +146,12 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="130.0" prefHeight="39.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="efInputCPU" focusColor="#7898f8" layoutX="30.0" layoutY="130.0" prefHeight="39.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="275.0" prefHeight="39.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="efInputSegs" focusColor="#7898f8" layoutX="30.0" layoutY="275.0" prefHeight="39.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
@@ -181,22 +180,22 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXRadioButton layoutX="26.0" layoutY="138.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="Cuando sucede un error se protegen los datos procesados." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
+            <JFXRadioButton fx:id="fiRadio1" contentDisplay="TOP" layoutX="26.0" layoutY="138.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="Cuando sucede un error se protegen los datos procesados." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="26.0" layoutY="198.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="Se realiza un log de las actividades que el sistema estaba haciendo al ocurrir un error." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
+            <JFXRadioButton fx:id="fiRadio2" layoutX="26.0" layoutY="198.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="Se realiza un log de las actividades que el sistema estaba haciendo al ocurrir un error." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="26.0" layoutY="258.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="El sistema reanuda las actividades si se produce una falla crítica." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
+            <JFXRadioButton fx:id="fiRadio3" layoutX="26.0" layoutY="258.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="El sistema reanuda las actividades si se produce una falla crítica." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="26.0" layoutY="318.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="Cuando el sistema reanuda las actividades, vuelve al estado que estaba previo al fallo." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
+            <JFXRadioButton fx:id="fiRadio4" layoutX="26.0" layoutY="318.0" prefHeight="60.0" prefWidth="460.0" stylesheets="@../css/radioButton.css" text="Cuando el sistema reanuda las actividades, vuelve al estado que estaba previo al fallo." textAlignment="JUSTIFY" textFill="#d1dde8" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
@@ -215,7 +214,7 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="105.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="maInputComentarios" focusColor="#7898f8" layoutX="30.0" layoutY="105.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
@@ -230,7 +229,7 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="214.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="maInputCC" focusColor="#7898f8" layoutX="30.0" layoutY="214.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
@@ -240,41 +239,11 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="322.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="maInputPromError" focusColor="#7898f8" layoutX="30.0" layoutY="322.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextField>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="apPortabilidad" layoutX="180.0" prefHeight="400.0" prefWidth="520.0" visible="false">
-         <children>
-            <Label layoutX="146.0" layoutY="14.0" text="Portabilidad" textAlignment="CENTER" textFill="#d1dde8" underline="true">
-               <font>
-                  <Font name="Tahoma Bold" size="36.0" />
-               </font>
-            </Label>
-            <JFXButton />
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="105.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXTextField>
-            <Label layoutX="27.0" layoutY="75.0" prefHeight="25.0" prefWidth="460.0" text="¿En cuántos sistemas operativos funciona el programa?" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
-               <font>
-                  <Font name="Tahoma" size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="30.0" layoutY="200.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXTextField>
-            <Label layoutX="26.0" layoutY="175.0" prefHeight="25.0" prefWidth="460.0" text="¿Cuántos pasos se requieren para instalar el software?" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
-               <font>
-                  <Font name="Tahoma" size="18.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="apUsabilidad" layoutX="180.0" prefHeight="400.0" prefWidth="520.0" visible="false">
@@ -289,12 +258,12 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXRadioButton layoutX="26.0" layoutY="101.0" stylesheets="@../css/radioButton.css" text="Ayuda contextual sobre menús y botones de acción" textFill="#d1dde8">
+            <JFXRadioButton fx:id="usRadio1" layoutX="26.0" layoutY="101.0" stylesheets="@../css/radioButton.css" text="Ayuda contextual sobre menús y botones de acción" textFill="#d1dde8">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXRadioButton>
-            <JFXRadioButton layoutX="26.0" layoutY="128.0" stylesheets="@../css/radioButton.css" text="Manual de usuario incorporado como un menú dedicado" textFill="#d1dde8">
+            <JFXRadioButton fx:id="usRadio2" layoutX="26.0" layoutY="128.0" stylesheets="@../css/radioButton.css" text="Manual de usuario incorporado como un menú dedicado" textFill="#d1dde8">
                <font>
                   <Font size="18.0" />
                </font>
@@ -304,7 +273,7 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="#7898f8" layoutX="26.0" layoutY="348.0" prefHeight="30.0" prefWidth="37.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+            <JFXTextField fx:id="usInputPasos" focusColor="#7898f8" layoutX="26.0" layoutY="348.0" prefHeight="30.0" prefWidth="37.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
                <font>
                   <Font size="18.0" />
                </font>
@@ -314,17 +283,47 @@
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXComboBox layoutX="26.0" layoutY="213.0" unFocusColor="#d1dde8" />
+            <JFXComboBox fx:id="usComboAyuda" layoutX="26.0" layoutY="213.0" prefHeight="25.0" prefWidth="419.0" promptText="Tipo de ayuda" stylesheets="@../css/comboBox.css" unFocusColor="#d1dde8" />
             <Label layoutX="73.0" layoutY="367.0" prefHeight="25.0" prefWidth="56.0" text="pasos" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
-            <JFXToggleButton layoutX="14.0" layoutY="238.0" text="¿Posee la interfaz organización por categorías?" textFill="#d1dde8" toggleColor="#4d64b2" toggleLineColor="#7887c2">
+            <JFXToggleButton fx:id="usToggleCat" layoutX="14.0" layoutY="238.0" text="¿Posee la interfaz organización por categorías?" textFill="#d1dde8" toggleColor="#4d64b2" toggleLineColor="#7887c2">
                <font>
                   <Font name="Tahoma" size="18.0" />
                </font>
             </JFXToggleButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="apPortabilidad" layoutX="180.0" prefHeight="400.0" prefWidth="520.0" visible="false">
+         <children>
+            <Label layoutX="146.0" layoutY="14.0" text="Portabilidad" textAlignment="CENTER" textFill="#d1dde8" underline="true">
+               <font>
+                  <Font name="Tahoma Bold" size="36.0" />
+               </font>
+            </Label>
+            <JFXButton />
+            <JFXTextField fx:id="poInputSO" focusColor="#7898f8" layoutX="30.0" layoutY="105.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="27.0" layoutY="75.0" prefHeight="25.0" prefWidth="460.0" text="¿En cuántos sistemas operativos funciona el programa?" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="poInputPasos" focusColor="#7898f8" layoutX="30.0" layoutY="200.0" prefHeight="35.0" prefWidth="68.0" stylesheets="@../css/textField.css" unFocusColor="#eeeeee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="26.0" layoutY="175.0" prefHeight="25.0" prefWidth="460.0" text="¿Cuántos pasos se requieren para instalar el software?" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="apResultados" layoutX="180.0" prefHeight="400.0" prefWidth="520.0" visible="false">
@@ -339,8 +338,7 @@
                   <Font name="Tahoma" size="24.0" />
                </font>
             </Label>
-            <JFXTreeTableView layoutX="26.0" layoutY="75.0" prefHeight="225.0" prefWidth="460.0" />
-            <Label layoutX="179.0" layoutY="311.0" prefHeight="30.0" prefWidth="200.0" text="No satisfactorio" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP">
+            <Label fx:id="resLabelCalificacion" layoutX="179.0" layoutY="311.0" prefHeight="30.0" prefWidth="166.0" text="No satisfactorio" textAlignment="JUSTIFY" textFill="#ccbe60" textOverrun="CLIP">
                <font>
                   <Font name="Tahoma" size="24.0" />
                </font>
@@ -348,6 +346,86 @@
             <Label layoutX="47.0" layoutY="341.0" prefHeight="30.0" prefWidth="419.0" text="(Requiere de 80 puntos como mínimo para obtener la certificación)" textAlignment="CENTER" textFill="#d0d3d7" textOverrun="CLIP" wrapText="true">
                <font>
                   <Font name="Tahoma" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="89.0" prefHeight="30.0" prefWidth="155.0" text="Funcionalidad" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="119.0" prefHeight="30.0" prefWidth="155.0" text="Eficiencia" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="149.0" prefHeight="30.0" prefWidth="155.0" text="Fiabilidad" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="179.0" prefHeight="30.0" prefWidth="155.0" text="Mantenibilidad" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="209.0" prefHeight="30.0" prefWidth="155.0" text="Usabilidad" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="239.0" prefHeight="30.0" prefWidth="155.0" text="Portabilidad" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosFu" layoutX="398.0" layoutY="89.0" prefHeight="30.0" prefWidth="60.0" text="15" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosEf" layoutX="398.0" layoutY="119.0" prefHeight="30.0" prefWidth="60.0" text="15" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosFi" layoutX="398.0" layoutY="149.0" prefHeight="30.0" prefWidth="60.0" text="15" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosMa" layoutX="398.0" layoutY="179.0" prefHeight="30.0" prefWidth="60.0" text="15" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosUs" layoutX="398.0" layoutY="209.0" prefHeight="30.0" prefWidth="60.0" text="15" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosPo" layoutX="398.0" layoutY="239.0" prefHeight="30.0" prefWidth="60.0" text="15" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="59.0" prefHeight="30.0" prefWidth="154.0" text="Característica" textAlignment="JUSTIFY" textFill="#609ce4" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="367.0" layoutY="59.0" prefHeight="30.0" prefWidth="90.0" text="Puntaje" textAlignment="JUSTIFY" textFill="#609ce4" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="308.0" layoutY="269.0" prefHeight="30.0" prefWidth="90.0" text="Total" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="resPuntosTotales" layoutX="398.0" layoutY="269.0" prefHeight="30.0" prefWidth="60.0" text="100" textAlignment="JUSTIFY" textFill="#d1dde8" textOverrun="CLIP" wrapText="true">
+               <font>
+                  <Font name="Tahoma" size="18.0" />
                </font>
             </Label>
          </children>
