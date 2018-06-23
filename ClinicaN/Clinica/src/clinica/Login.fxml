@@ -39,7 +39,7 @@
       </AnchorPane>
       <AnchorPane layoutX="40.0" layoutY="38.0" prefHeight="325.0" prefWidth="325.0">
          <children>
-            <Label layoutX="17.0" text="Hospital Trinidad" textFill="WHITE">
+            <Label layoutX="38.0" text="Hospital Borda" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>

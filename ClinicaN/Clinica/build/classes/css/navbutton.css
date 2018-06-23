@@ -1,0 +1,16 @@
+.pane {
+    -fx-background-color: #3dd770;
+    -fx-border-width: 5;
+    -fx-border-radius: 10 10 10 10;
+}
+
+.pane:hover {
+    -fx-background-color: #4de780;
+    -fx-effect: dropshadow(gaussian, #4de780, 20, 0, 0, 0);
+}
+
+.pane:pressed {
+    -fx-background-color: #1dc750;
+    -fx-effect: dropshadow(gaussian, #2dd760, 20, 0, 0, 0);
+    -fx-background-insets: 2;
+}

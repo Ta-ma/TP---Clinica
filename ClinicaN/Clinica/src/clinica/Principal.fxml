@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #0a2414;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinica.PrincipalController">
+   <children>
+      <Pane layoutX="320.0" onMouseClicked="#handleMedicosClick" prefHeight="60.0" prefWidth="160.0" styleClass="pane" stylesheets="@../css/navbutton.css">
+         <children>
+            <Label layoutX="33.0" layoutY="13.0" text="Médicos" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="480.0" onMouseClicked="#handleSituacionesClick" prefHeight="60.0" prefWidth="160.0" styleClass="pane" stylesheets="@../css/navbutton.css">
+         <children>
+            <Label layoutX="16.0" layoutY="13.0" text="Situaciones" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="640.0" onMouseClicked="#handleReportesClick" prefHeight="60.0" prefWidth="160.0" styleClass="pane" stylesheets="@../css/navbutton.css">
+         <children>
+            <Label layoutX="30.0" layoutY="13.0" text="Reportes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane onMouseClicked="#handleMedicosClick" prefHeight="60.0" prefWidth="160.0" styleClass="pane" stylesheets="@../css/navbutton.css">
+         <children>
+            <Label layoutX="33.0" layoutY="13.0" text="Usuarios" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="160.0" onMouseClicked="#handlePacientesClick" prefHeight="60.0" prefWidth="160.0" styleClass="pane" stylesheets="@../css/navbutton.css">
+         <children>
+            <Label layoutX="27.0" layoutY="13.0" text="Pacientes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="apUsuarios" layoutY="60.0" prefHeight="540.0" prefWidth="800.0">
+         <children>
+            <AnchorPane layoutX="550.0" layoutY="20.0" prefHeight="500.0" prefWidth="225.0" style="-fx-background-color: #1da150;">
+               <children>
+                  <Button layoutX="25.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="175.0" stylesheets="@../css/button.css" text="Eliminar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <PasswordField fx:id="fieldPassword" layoutX="25.0" layoutY="190.0" prefHeight="25.0" prefWidth="175.0" stylesheets="@../css/button.css" />
+                  <TextField fx:id="fieldUsuario" layoutX="25.0" layoutY="120.0" prefHeight="25.0" prefWidth="175.0" />
+                  <Label layoutX="25.0" layoutY="160.0" text="Contraseña" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="25.0" layoutY="90.0" text="Nombre" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="14.0" text="Usuarios" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="fieldPassword1" layoutX="25.0" layoutY="260.0" prefHeight="25.0" prefWidth="175.0" stylesheets="@../css/button.css" />
+                  <Label layoutX="25.0" layoutY="230.0" text="Email" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="25.0" layoutY="350.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="175.0" stylesheets="@../css/button.css" text="Agregar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="25.0" layoutY="400.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="175.0" stylesheets="@../css/button.css" text="Modificar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <TableView layoutX="25.0" layoutY="20.0" prefHeight="500.0" prefWidth="500.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

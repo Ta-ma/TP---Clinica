@@ -49,8 +49,7 @@ public class SQLDAO {
             
             // usuarios
             sql =   "CREATE TABLE USUARIOS " +
-                    "(ID INTEGER PRIMARY KEY    AUTOINCREMENT  NOT NULL," +
-                    " NOMBRE     TEXT           NOT NULL, " + 
+                    " (NOMBRE    TEXT           PRIMARY KEY     NOT NULL, " + 
                     " PASSWORD   CHAR(50)       NOT NULL, " + 
                     " EMAIL      TEXT)"; 
             stmt.executeUpdate(sql);
@@ -110,6 +109,7 @@ public class SQLDAO {
     public boolean validarUsuario(String nombre, String password) {
         boolean res = false;
         try {
+            stmt = c.createStatement();
             String sql = "SELECT PASSWORD FROM USUARIOS WHERE NOMBRE = '" + nombre + "';";
             ResultSet rs = stmt.executeQuery(sql);
             

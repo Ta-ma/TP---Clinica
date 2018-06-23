@@ -19,11 +19,15 @@ public class Clinica extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root = (Parent)loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
+
         
+        LoginController login = loader.getController();
         SQLDAO dao = new SQLDAO();
+        login.setDAO(dao);
         stage.show();
     }
 
