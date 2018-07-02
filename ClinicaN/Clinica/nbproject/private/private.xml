@@ -5,11 +5,9 @@
         <group>
             <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/PrincipalController.java</file>
             <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/SQLDAO.java</file>
-            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/css/navbutton.css</file>
-            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/Principal.fxml</file>
-            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/LoginController.java</file>
-            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/Clinica.java</file>
-            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/Login.fxml</file>
+            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/Medico.java</file>
+            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/Paciente.java</file>
+            <file>file:/D:/Arca/Unlam/Análisis%20de%20Software/Software%20para%20TP/ClinicaN/Clinica/src/clinica/Usuario.java</file>
         </group>
     </open-files>
 </project-private>

@@ -12,5 +12,4 @@
 .pane:pressed {
     -fx-background-color: #1dc750;
     -fx-effect: dropshadow(gaussian, #2dd760, 20, 0, 0, 0);
-    -fx-background-insets: 2;
 }

@@ -44,19 +44,20 @@ public class LoginController implements Initializable {
         }
     }
     
-    private void finalizar() {
+    public void finalizar() {
         Stage stage = (Stage) buttonIngresar.getScene().getWindow();
         stage.close();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Principal.fxml"));
-        //PrincipalController principal = loader.getController();
-        //SQLDAO dao = new SQLDAO();
-        //principal.setDAO(dao);
         Scene scene;
         try {
             scene = new Scene(loader.load());
             Stage secondStage = new Stage();
+            secondStage.setTitle("Clínica El Borda");
             secondStage.setScene(scene);
+            PrincipalController principal = loader.getController();
+            principal.setDAO(dao);
+            principal.inicializar();
             secondStage.show();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,7 +65,6 @@ public class LoginController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
     public void setDAO (SQLDAO dao) {

@@ -22,13 +22,14 @@ public class Clinica extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
         Parent root = (Parent)loader.load();
         Scene scene = new Scene(root);
+        stage.setTitle("Login");
         stage.setScene(scene);
-
         
         LoginController login = loader.getController();
         SQLDAO dao = new SQLDAO();
         login.setDAO(dao);
         stage.show();
+        login.finalizar();
     }
 
     /**
@@ -37,5 +38,4 @@ public class Clinica extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }
