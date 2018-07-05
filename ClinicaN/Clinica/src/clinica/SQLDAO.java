@@ -7,8 +7,12 @@ package clinica;
 
 import java.io.File;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TreeItem;
 import org.sqlite.SQLiteConfig;
 
 /**
@@ -145,6 +149,11 @@ public class SQLDAO {
         return res;
     }
     
+    /**
+     *
+     * @param usuario
+     * @throws Exception
+     */
     public void insertarUsuario(Usuario usuario) throws Exception {
         String nombre = usuario.getNombre();
         String password = usuario.getPassword();
@@ -167,6 +176,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param nombre
+     * @throws Exception
+     */
     public void eliminarUsuario (String nombre) throws Exception {
         try {
             // borro el usuario
@@ -183,6 +197,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param usuario
+     * @throws Exception
+     */
     public void actualizarUsuario (Usuario usuario) throws Exception {
         String nombre = usuario.getNombre();
         String password = usuario.getPassword();
@@ -204,6 +223,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public ObservableList<Usuario> obtenerUsuarios () throws Exception {
         ObservableList<Usuario> usuarios = FXCollections.observableArrayList();
         try {
@@ -222,6 +246,11 @@ public class SQLDAO {
         return usuarios;
     }
     
+    /**
+     *
+     * @param paciente
+     * @throws Exception
+     */
     public void insertarPaciente (Paciente paciente) throws Exception {
         int dni = paciente.getDni();
         String nombre = paciente.getNombre();
@@ -243,6 +272,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param dni
+     * @throws Exception
+     */
     public void eliminarPaciente (int dni) throws Exception {
         try {
             // borro el paciente
@@ -259,6 +293,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param paciente
+     * @throws Exception
+     */
     public void actualizarPaciente (Paciente paciente) throws Exception {
         int dni = paciente.getDni();
         String nombre = paciente.getNombre();
@@ -279,6 +318,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public ObservableList<Paciente> obtenerPacientes () throws Exception  {
         ObservableList<Paciente> pacientes = FXCollections.observableArrayList();
         try {
@@ -297,6 +341,34 @@ public class SQLDAO {
         return pacientes;
     }
     
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public ObservableList<Paciente> consultarEnfermedadesPaciente () throws Exception  {
+        ObservableList<Paciente> pacientes = FXCollections.observableArrayList();
+        try {
+            Statement stmt = c.createStatement();
+            String sql = "SELECT DNI, NOMBRE FROM PACIENTES;";
+            ResultSet rs = stmt.executeQuery(sql);
+            // voy agregando los pacientes a la lista
+            while (rs.next()) {
+                pacientes.add(new Paciente(rs.getString("DNI"), rs.getString("NOMBRE")));
+            }
+            // cierro el statement
+            stmt.close();
+        } catch (SQLException e) {
+            lanzarEx(e);
+        }
+        return pacientes;
+    }
+    
+    /**
+     *
+     * @param med
+     * @throws Exception
+     */
     public void insertarMedico (Medico med) throws Exception {
         int dni = med.getDni();
         String nombre = med.getNombre();
@@ -319,6 +391,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param dni
+     * @throws Exception
+     */
     public void eliminarMedico (int dni) throws Exception {
         try {
             // borro el médico
@@ -335,6 +412,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param med
+     * @throws Exception
+     */
     public void actualizarMedico (Medico med) throws Exception {
         int dni = med.getDni();
         String nombre = med.getNombre();
@@ -356,6 +438,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public ObservableList<Medico> obtenerMedicos () throws Exception  {
         ObservableList<Medico> medicos = FXCollections.observableArrayList();
         try {
@@ -374,6 +461,11 @@ public class SQLDAO {
         return medicos;
     }
     
+    /**
+     *
+     * @param sit
+     * @throws Exception
+     */
     public void insertarSituacion (Situacion sit) throws Exception {
         int id = sit.getId();
         int dniPac = sit.getDniPaciente();
@@ -400,6 +492,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param id
+     * @throws Exception
+     */
     public void eliminarSituacion (int id) throws Exception {
         try {
             // borro la situación
@@ -416,6 +513,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @param sit
+     * @throws Exception
+     */
     public void actualizarSituacion (Situacion sit) throws Exception {
         int id = sit.getId();
         int dniPac = sit.getDniPaciente();
@@ -438,6 +540,11 @@ public class SQLDAO {
         }
     }
     
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public ObservableList<Situacion> obtenerSituaciones () throws Exception  {
         ObservableList<Situacion> sits = FXCollections.observableArrayList();
         try {
@@ -455,5 +562,106 @@ public class SQLDAO {
             lanzarEx(e);
         }
         return sits;
+    }
+    
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
+    public TreeItem<TreeEntity> obtenerTreeMedicos () throws Exception {
+        TreeItem<TreeEntity> root = new TreeItem<>();
+        Map<String, List<Paciente>> mapa = new HashMap<>();
+        try {
+            Statement stmt = c.createStatement();
+            String sql = "SELECT MEDICOS.DNI AS MEDDNI, MEDICOS.NOMBRE AS MEDNOM," +
+                " PACIENTES.DNI AS PACDNI, PACIENTES.NOMBRE AS PACNOM" +
+                " FROM (PACIENTES INNER JOIN (MEDICOS INNER JOIN SITUACIONES" +
+                " ON MEDICOS.DNI = SITUACIONES.DNIMEDICO)" +
+                " ON PACIENTES.DNI = SITUACIONES.DNIPACIENTE) ORDER BY MEDDNI;";
+            
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                String medicoDni, medicoNombre, pacienteDni, pacienteNombre, nuevoDni;
+                medicoDni = rs.getString("MEDDNI");
+                medicoNombre = rs.getString("MEDNOM");
+                pacienteDni = rs.getString("PACDNI");
+                pacienteNombre = rs.getString("PACNOM");
+                
+                TreeItem<TreeEntity> nodoActual =
+                   new TreeItem<>(new TreeEntity(medicoDni, medicoNombre, false));
+                root.getChildren().add(nodoActual);
+                nodoActual.getChildren().add(new TreeItem<>(new TreeEntity(pacienteDni, pacienteNombre, true)));
+                
+                while (rs.next()) {
+                    pacienteDni = rs.getString("PACDNI");
+                    pacienteNombre = rs.getString("PACNOM");
+                    if (!medicoDni.equals(rs.getString("MEDDNI"))) {
+                        medicoDni = rs.getString("MEDDNI");
+                        medicoNombre = rs.getString("MEDNOM");
+                        nodoActual = new TreeItem<>(new TreeEntity(medicoDni, medicoNombre, false));
+                        root.getChildren().add(nodoActual);
+                    }
+                    nodoActual.getChildren().add(new TreeItem<>(new TreeEntity(pacienteDni, pacienteNombre, true)));
+                }
+            }
+            // cierro el statement
+            stmt.close();
+        } catch (SQLException e) {
+            lanzarEx(e);
+        }
+        return root;
+    }
+    
+    /**
+     *
+     * @param dni
+     * @return
+     * @throws Exception
+     */
+    public ObservableList<String> obtenerDiagsPaciente (String dni) throws Exception  {
+        ObservableList<String> diags = FXCollections.observableArrayList();
+        try {
+            Statement stmt = c.createStatement();
+            String sql = "SELECT DIAGNOSTICO FROM " +
+            "(PACIENTES INNER JOIN SITUACIONES ON " +
+            " (" + dni + " = PACIENTES.DNI AND PACIENTES.DNI = SITUACIONES.DNIPACIENTE));";
+            ResultSet rs = stmt.executeQuery(sql);
+            // voy agregando las situaciones a la lista
+            while (rs.next()) {
+                diags.add(rs.getString("DIAGNOSTICO"));
+            }
+            // cierro el statement
+            stmt.close();
+        } catch (SQLException e) {
+            lanzarEx(e);
+        }
+        return diags;
+    }
+    
+    /**
+     *
+     * @param dni
+     * @return
+     * @throws Exception
+     */
+    public ObservableList<InformeEXM> obtenerDiagsMedico (int dni) throws Exception  {
+        ObservableList<InformeEXM> diags = FXCollections.observableArrayList();
+        try {
+            Statement stmt = c.createStatement();
+            String sql = "SELECT PACIENTES.NOMBRE as NOMPAC, PACIENTES.DNI as DNIPAC, DIAGNOSTICO FROM " +
+                "(PACIENTES INNER JOIN SITUACIONES ON" +
+                " (" + dni + " = SITUACIONES.DNIMEDICO AND PACIENTES.DNI = SITUACIONES.DNIPACIENTE));";
+            ResultSet rs = stmt.executeQuery(sql);
+            // voy agregando las situaciones a la lista
+            while (rs.next()) {
+                diags.add(new InformeEXM(rs.getString("DNIPAC"), rs.getString("NOMPAC"), rs.getString("DIAGNOSTICO")));
+            }
+            // cierro el statement
+            stmt.close();
+        } catch (SQLException e) {
+            lanzarEx(e);
+        }
+        return diags;
     }
 }

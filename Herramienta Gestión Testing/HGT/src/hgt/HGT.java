@@ -21,7 +21,7 @@ public class HGT extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Ventana.fxml"));
         Parent root = (Parent)loader.load();
         VentanaController controller = (VentanaController)loader.getController();
-        stage.setTitle("SUPER WHITE BOX TESTING UTILITY 2019");
+        stage.setTitle("Herramienta de Gestión de Testing - Grupo 2 - 2018");
         controller.setStage(stage);
         
         Scene scene = new Scene(root);

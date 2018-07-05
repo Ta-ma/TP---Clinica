@@ -16,7 +16,11 @@ import javafx.stage.Stage;
  * @author Santi
  */
 public class Clinica extends Application {
-    
+    /**
+     * 
+     * @param stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
@@ -29,7 +33,7 @@ public class Clinica extends Application {
         SQLDAO dao = new SQLDAO();
         login.setDAO(dao);
         stage.show();
-        login.finalizar();
+        //login.finalizar();
     }
 
     /**

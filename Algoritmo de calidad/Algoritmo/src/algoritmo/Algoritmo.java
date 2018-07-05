@@ -20,9 +20,8 @@ public class Algoritmo extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Pantalla.fxml"));
-        
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Algoritmo de Calidad - Grupo 2 - 2018");
         stage.setScene(scene);
         stage.show();
     }

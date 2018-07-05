@@ -11,16 +11,13 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -44,6 +41,9 @@ public class LoginController implements Initializable {
         }
     }
     
+    /**
+     *
+     */
     public void finalizar() {
         Stage stage = (Stage) buttonIngresar.getScene().getWindow();
         stage.close();
@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
         try {
             scene = new Scene(loader.load());
             Stage secondStage = new Stage();
-            secondStage.setTitle("Clínica El Borda");
+            secondStage.setTitle("Clínica El Borda - Grupo 2 - 2018");
             secondStage.setScene(scene);
             PrincipalController principal = loader.getController();
             principal.setDAO(dao);
@@ -67,6 +67,10 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }    
     
+    /**
+     *
+     * @param dao
+     */
     public void setDAO (SQLDAO dao) {
         this.dao = dao;
     }

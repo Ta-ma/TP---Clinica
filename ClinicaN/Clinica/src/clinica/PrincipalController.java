@@ -5,32 +5,23 @@
  */
 package clinica;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 /**
  *
@@ -39,7 +30,8 @@ import javafx.stage.Stage;
 public class PrincipalController implements Initializable {
     // variables de uso general
     SQLDAO dao;
-    AnchorPane apActual;
+    AnchorPane pantallaActual, informeActual;
+    @FXML AnchorPane apBienvenida;
     // Usuarios
     @FXML TableView<Usuario> tablaUsuarios;
     @FXML TextField inputUsuariosNombre;
@@ -66,7 +58,19 @@ public class PrincipalController implements Initializable {
     @FXML AnchorPane apSituaciones;
     // Informes
     @FXML AnchorPane apInformes;
-    
+       // Pacientes por médico
+       @FXML AnchorPane apInformesPXM;
+       @FXML Label labelInformesPacNombre;
+       @FXML Label labelInformesPacDNI;
+       @FXML TreeView<TreeEntity> treeInformesMed;
+       @FXML ListView<String> listInformesPacDiag;
+       // Enfermedades por médico
+       @FXML AnchorPane apInformesEXM;
+       @FXML ListView<Medico> listInformesMedicos;
+       @FXML TableView<InformeEXM> tablaInformesEXM;
+       @FXML Label labelInformesMedNombre;
+       @FXML Label labelInformesMedDNI;
+       @FXML Label labelInformesMedEspecialidad;
     // ******************************
     // ****** Métodos Usuarios ******
     // ******************************
@@ -115,7 +119,6 @@ public class PrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
-    
     // *******************************
     // ****** Métodos Pacientes ******
     // *******************************
@@ -162,6 +165,9 @@ public class PrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+    // *****************************
+    // ****** Métodos Médicos ******
+    // *****************************
     /**
      * Botón de navegación de médicos
      * @param event 
@@ -205,6 +211,9 @@ public class PrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+    // *********************************
+    // ****** Métodos Situaciones ******
+    // *********************************
     /**
      * Botón de navegación de situaciones
      * @param event 
@@ -250,6 +259,9 @@ public class PrincipalController implements Initializable {
             alert.showAndWait();
         }
     }
+    // ******************************
+    // ****** Métodos Informes ******
+    // ******************************
     /**
      * Botón de navegación de informes
      * @param event 
@@ -257,14 +269,81 @@ public class PrincipalController implements Initializable {
     @FXML
     private void handleInformesClick(MouseEvent event) {
         cambiarPantalla(apInformes);
+        try {
+            treeInformesMed.setRoot(dao.obtenerTreeMedicos());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+        }
     }
     
+    @FXML
+    private void handleInformesPXM(ActionEvent event) {
+        cambiarInforme(apInformesPXM);
+        try {
+            treeInformesMed.setRoot(dao.obtenerTreeMedicos());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleInformesEXM(ActionEvent event) {
+        cambiarInforme(apInformesEXM);
+        try {
+            listInformesMedicos.setItems(dao.obtenerMedicos());
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE);
+            alert.showAndWait();
+        }
+    }
+    // *******************************
+    // ****** Métodos Generales ******
+    // *******************************
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        apUsuarios.setVisible(true);
-        apActual = apUsuarios;
+        apBienvenida.setVisible(true);
+        pantallaActual = apBienvenida;
+        // inicialización del árbol de pacientes por médico
+        treeInformesMed.setShowRoot(false);
+        treeInformesMed.getSelectionModel().selectedItemProperty()
+            .addListener((v, oldValue, newValue) -> {
+                if(newValue != null && oldValue != newValue) {
+                    if (newValue.getValue().esPaciente()) {
+                        try {
+                            labelInformesPacDNI.setText(newValue.getValue().getDni());
+                            labelInformesPacNombre.setText(newValue.getValue().getNombre());
+                            listInformesPacDiag.setItems(dao.obtenerDiagsPaciente(newValue.getValue().getDni()));
+                        } catch (Exception e) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE);
+                            alert.showAndWait();
+                        }
+                    } else {
+                        labelInformesPacDNI.setText("-");
+                        labelInformesPacNombre.setText("-");
+                    }
+                }
+            });
+        listInformesMedicos.getSelectionModel().selectedItemProperty()
+            .addListener((v, oldValue, newValue) -> {
+                if(newValue != null && oldValue != newValue) {
+                    try {
+                        labelInformesMedDNI.setText(Integer.toString(newValue.getDni()));
+                        labelInformesMedNombre.setText(newValue.getNombre());
+                        labelInformesMedEspecialidad.setText(newValue.getEspecialidad());
+                        tablaInformesEXM.setItems(dao.obtenerDiagsMedico(newValue.getDni()));
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.CLOSE);
+                        alert.showAndWait();
+                    }
+                }
+            });
     }    
     
+    /**
+     *
+     */
     public void inicializar() {
         // Usuarios
         TableColumn<Usuario, String> colUsuariosNombre = new TableColumn("Nombre");
@@ -374,6 +453,20 @@ public class PrincipalController implements Initializable {
         });
         tablaSituaciones.getColumns().addAll(colSituacionesId, colSituacionesDniP, colSituacionesDniM, colSituacionesDiag);
         
+        // Informe EXM
+        TableColumn<InformeEXM, String> colInformeEXMDni = new TableColumn("DNI");
+        colInformeEXMDni.setPrefWidth(90);
+        colInformeEXMDni.setCellValueFactory(new PropertyValueFactory<>("dniPac"));
+        
+        TableColumn<InformeEXM, String> colInformeEXMNombre = new TableColumn("Nombre");
+        colInformeEXMNombre.setPrefWidth(90);
+        colInformeEXMNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePac"));
+
+        TableColumn<InformeEXM, String> colInformeEXMDiag = new TableColumn("Diagnóstico");
+        colInformeEXMDiag.setPrefWidth(100);
+        colInformeEXMDiag.setCellValueFactory(new PropertyValueFactory<>("diagnostico"));
+        tablaInformesEXM.getColumns().addAll(colInformeEXMDni, colInformeEXMNombre, colInformeEXMDiag);
+        
         // llenar las tablas
         try {
             tablaMedicos.setItems(dao.obtenerMedicos());
@@ -386,6 +479,10 @@ public class PrincipalController implements Initializable {
         }
     }
     
+    /**
+     *
+     * @param dao
+     */
     public void setDAO (SQLDAO dao) {
         this.dao = dao;
     }
@@ -395,9 +492,26 @@ public class PrincipalController implements Initializable {
      * @param ap 
      */
     private void cambiarPantalla (AnchorPane ap) {
-        if (apActual == ap) return;
-        apActual.setVisible(false);
-        ap.setVisible(true);
-        apActual = ap;
+        if (pantallaActual != null) {
+            if (pantallaActual == ap) return;
+            pantallaActual.setVisible(false);
+            ap.setVisible(true);
+            pantallaActual = ap;
+        } else {
+            pantallaActual = ap;
+            ap.setVisible(true);
+        }
+    }
+    
+    private void cambiarInforme (AnchorPane ap) {
+        if (informeActual != null) {
+            if (informeActual == ap) return;
+            informeActual.setVisible(false);
+            ap.setVisible(true);
+            informeActual = ap;
+        } else {
+            informeActual = ap;
+            ap.setVisible(true);
+        }
     }
 }
